@@ -1,0 +1,17 @@
+version: 0.0
+os: linux
+
+files:
+  - source: /
+    destination: /opt/ml-deploy
+
+hooks:
+  ApplicationStop:
+    - location: scripts/stop_container.sh
+      timeout: 60
+      runas: root
+
+  ApplicationStart:
+    - location: scripts/start_container.sh
+      timeout: 300
+      runas: root
